@@ -2,11 +2,17 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://neutralpress.mypinata.cloud https://cloud.typography.com 'unsafe-inline'; img-src 'self' data: https://neutralpress.mypinata.cloud; font-src 'self' https://cloud.typography.com data:">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Starter</title>
+    <title>Blockchain Ethics Initiative</title>
+
+    <meta name="description" content="{{#if description}}{{description}}{{else}}Blockchain Ethics Initiative: Gathering Practical Knowledge for Better Policy{{/if}}">
+    <meta name="author" content="{{author}}">
+    <meta name="publication" content="{{publication}}">
+
     <style id="custom-css"></style>
     <script>
     fetch("insert_stylesheet.css").then(response => response.text()).then(css => {document.getElementById("custom-css").textContent = css;});
     </script>
 
-    <link rel="stylesheet" href="">
-</head>     
+    <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7060374/6317832/css/fonts.css" />
+    <link id="main" rel="stylesheet" href="{{assets_gateway}}/ipfs/bafkreia76cepej4biuwhgdjzaooygj57blkttmyn5jlebbfc7qmdoxyzw4?filename=styles.css">
+</head>
