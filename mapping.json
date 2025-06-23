@@ -4,23 +4,13 @@
       "reference": "homepage",
       "file": "homepage.handlebars",
       "path": "/",
-      "collections": [
-        {
-          "source": "orbisdb",
-          "slug": "home",
-          "key": "post_type",
-          "value": "homepage",
-          "query": "SELECT * FROM {{table}} WHERE publication = '{{publication}}' AND {{key}} = '{{value}}' AND language = '{{lang}}'"
-        }
-      ],
-      "ripples": []
+      "collections": []
     },
     {
       "reference": "page",
       "file": "page.handlebars",
       "path": "/{slug}/",
-      "collections": [],
-      "ripples": []
+      "collections": []
     }
   ],
   "ripples": []
