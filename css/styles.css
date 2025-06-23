@@ -10,6 +10,21 @@ h1 {
   font-weight: 700;
 }
 
+h2 {
+  font-family: "Gotham A", "Gotham B";
+  font-style: normal;
+  font-weight: 800;
+}
+
+h3 {
+  font-family: "Hoefler Titling A", "Hoefler Titling B";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2.4rem;
+  /* font-style: italic; */
+  margin: 1.5rem 0 0.75rem 0;
+}
+
 a {
   color: var(--black);
   text-decoration: none;
@@ -143,10 +158,13 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 3rem;
 }
 #home_head h1 {
-  font-size: 4rem;
+  font-size: 5.2rem;
+  line-height: 1.28;
   text-align: center;
+  margin: 0;
 }
 
 /*# sourceMappingURL=styles.css.map */
