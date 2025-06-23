@@ -186,14 +186,24 @@ main {
   margin-bottom: 0.75rem;
 }
 #home_head h1 {
-  font-size: 5.2rem;
+  font-size: 3.2rem;
   line-height: 1.22;
   text-align: center;
   margin: 0;
 }
+@media (min-width: 768px) {
+  #home_head h1 {
+    font-size: 5.2rem;
+  }
+}
 #home_head h2 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   text-transform: lowercase;
+}
+@media (min-width: 768px) {
+  #home_head h2 {
+    font-size: 1.8rem;
+  }
 }
 
 #page_title_container {
@@ -251,6 +261,7 @@ header.container {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding-top: 1.5rem;
 }
 
 /*# sourceMappingURL=styles.css.map */

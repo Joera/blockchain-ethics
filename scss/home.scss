@@ -1,3 +1,8 @@
+@use './styleguide/typography';
+@use './styleguide/breakpoints';
+
+
+
 #home_head {
     display: flex;
     flex-direction: column;
@@ -7,15 +12,24 @@
 
     h1 {
 
-        font-size: 5.2rem;
+        font-size: 3.2rem;
         line-height: 1.22;
         text-align: center;
         margin: 0;
+
+        @media (min-width: breakpoints.$breakpoint-medium) {
+                font-size: 5.2rem;
+            }
+
     }
 
     h2 {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         text-transform: lowercase;
+
+        @media (min-width: breakpoints.$breakpoint-medium) {
+                font-size: 1.8rem;
+            }
     }
 
 }

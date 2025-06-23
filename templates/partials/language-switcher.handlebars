@@ -1,6 +1,9 @@
 <nav>
     <ul>
-        <li><a href="/">nl</a></li>
-        <li><a href="/en">en</a></li>
+        {{#if (eq language "nl")}}
+            <li><a href="/en">en</a></li>
+        {{else}}
+            <li><a href="/">nl</a></li>
+        {{/if}}
     </ul>
 </nav>
