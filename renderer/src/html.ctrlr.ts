@@ -11,8 +11,8 @@ export const renderHTML = async (
   templateData: any,
 ) => {
   try {
-    console.log(config);
-    console.log(templateConfig);
+    console.log("config", config);
+    console.log("templateConfig", templateConfig);
 
     // Validate inputs
     if (!config?.template_cid || !templateConfig?.file) {
@@ -50,6 +50,8 @@ export const renderHTML = async (
       return "";
     }
 
+    console.log(templateFile.cid);
+
     // Fetch template content
     const templateResponse = await fetch(
       `${IPFS_URL}/api/v0/cat?arg=${templateFile.cid}`,
@@ -73,6 +75,8 @@ export const renderHTML = async (
       .replace(/"$/, "") // Remove trailing quote if present
       .replace(/(?<=>)"/g, "") // Remove quotes after >
       .replace(/"(?=<)/g, ""); // Remove quotes before <
+
+    console.log(template);
 
     if (!template) {
       console.error("Empty template after cleaning");
