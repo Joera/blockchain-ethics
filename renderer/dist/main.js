@@ -1059,8 +1059,6 @@
   // renderer/src/html.ctrlr.ts
   var renderHTML = async (config2, templateConfig2, templateData2) => {
     try {
-      console.log("config", config2);
-      console.log("templateConfig", templateConfig2);
       if (!config2?.template_cid || !templateConfig2?.file) {
         console.error("Missing required config:", {
           template_cid: config2?.template_cid,
@@ -1090,7 +1088,6 @@
         console.error("Template file not found:", templateConfig2.file);
         return "";
       }
-      console.log(templateFile.cid);
       const templateResponse = await fetch(
         `${IPFS_URL}/api/v0/cat?arg=${templateFile.cid}`,
         {
@@ -1106,7 +1103,6 @@
         return "";
       }
       const template = cleanTemplateString(await templateResponse.text()).replace(/^"/, "").replace(/"$/, "").replace(/(?<=>)"/g, "").replace(/"(?=<)/g, "");
-      console.log(template);
       if (!template) {
         console.error("Empty template after cleaning");
         return "";

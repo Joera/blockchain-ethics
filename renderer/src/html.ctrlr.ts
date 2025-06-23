@@ -11,9 +11,6 @@ export const renderHTML = async (
   templateData: any,
 ) => {
   try {
-    console.log("config", config);
-    console.log("templateConfig", templateConfig);
-
     // Validate inputs
     if (!config?.template_cid || !templateConfig?.file) {
       console.error("Missing required config:", {
@@ -41,16 +38,16 @@ export const renderHTML = async (
     }
 
     const templateArray = await response.json();
-    const templateFile = templateArray.find((t: any) =>
-      t.path.endsWith(`/${templateConfig.file}.handlebars`) || t.path.endsWith(`/${templateConfig.file}`),
+    const templateFile = templateArray.find(
+      (t: any) =>
+        t.path.endsWith(`/${templateConfig.file}.handlebars`) ||
+        t.path.endsWith(`/${templateConfig.file}`),
     );
 
     if (!templateFile?.cid) {
       console.error("Template file not found:", templateConfig.file);
       return "";
     }
-
-    console.log(templateFile.cid);
 
     // Fetch template content
     const templateResponse = await fetch(
@@ -76,8 +73,6 @@ export const renderHTML = async (
       .replace(/(?<=>)"/g, "") // Remove quotes after >
       .replace(/"(?=<)/g, ""); // Remove quotes before <
 
-    console.log(template);
-
     if (!template) {
       console.error("Empty template after cleaning");
       return "";
@@ -86,8 +81,9 @@ export const renderHTML = async (
     // console.log(templateData);
 
     // Find and process partials
-    const partialFiles = templateArray.filter((t: any) =>
-      t.path.includes("partials/") && t.path.endsWith(".handlebars"),
+    const partialFiles = templateArray.filter(
+      (t: any) =>
+        t.path.includes("partials/") && t.path.endsWith(".handlebars"),
     );
     const result = await processPartials(template, partialFiles, templateData);
 
