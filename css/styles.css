@@ -217,7 +217,12 @@ main {
   flex-direction: column;
   align-items: flex-start;
   margin-top: 3rem;
-  margin-bottom: 4rem;
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 768px) {
+  #page_title_container {
+    margin-bottom: 4rem;
+  }
 }
 #page_title_container h1 {
   font-size: 3.2rem;
