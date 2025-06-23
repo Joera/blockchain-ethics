@@ -11,6 +11,9 @@ export const renderHTML = async (
   templateData: any,
 ) => {
   try {
+    console.log(config);
+    console.log(templateConfig);
+
     // Validate inputs
     if (!config?.template_cid || !templateConfig?.file) {
       console.error("Missing required config:", {
@@ -94,16 +97,16 @@ export const renderHTML = async (
       .replace(/\n{2,}/g, "\n")
       .replace(/>\s+</g, ">\n<")
       .trim();
-    
+
     // Remove any characters before <!DOCTYPE - this includes asterisks and other unexpected characters
     const doctypePattern = /<!DOCTYPE/i;
     const doctypeMatch = doctypePattern.exec(cleanedResult);
-    
+
     if (doctypeMatch && doctypeMatch.index > 0) {
       // Remove everything before the DOCTYPE declaration
       cleanedResult = cleanedResult.substring(doctypeMatch.index);
     }
-    
+
     return cleanedResult;
   } catch (error) {
     console.error("Error in renderer:", error);

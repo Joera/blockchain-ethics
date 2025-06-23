@@ -1059,6 +1059,8 @@
   // renderer/src/html.ctrlr.ts
   var renderHTML = async (config2, templateConfig2, templateData2) => {
     try {
+      console.log(config2);
+      console.log(templateConfig2);
       if (!config2?.template_cid || !templateConfig2?.file) {
         console.error("Missing required config:", {
           template_cid: config2?.template_cid,
