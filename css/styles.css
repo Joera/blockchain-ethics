@@ -35,10 +35,11 @@ h3 {
   margin: 2.5rem 0 0.25rem 0;
 }
 
-strong {
+h4 {
   font-family: "Gotham A", "Gotham B";
   font-style: normal;
   font-weight: 700;
+  font-size: 1.125rem;
 }
 
 a {
