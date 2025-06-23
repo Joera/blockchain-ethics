@@ -89,11 +89,19 @@ export const renderHTML = async (
       return "";
     }
 
-    // Clean up whitespace in final result
-    return result
+    // Clean up whitespace and remove any characters preceding DOCTYPE
+    let cleanedResult = result
       .replace(/\n{2,}/g, "\n")
       .replace(/>\s+</g, ">\n<")
       .trim();
+    
+    // Remove any characters before <!DOCTYPE
+    const doctypeIndex = cleanedResult.indexOf("<!DOCTYPE");
+    if (doctypeIndex > 0) {
+      cleanedResult = cleanedResult.substring(doctypeIndex);
+    }
+    
+    return cleanedResult;
   } catch (error) {
     console.error("Error in renderer:", error);
     return "";

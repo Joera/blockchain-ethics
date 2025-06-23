@@ -1108,7 +1108,12 @@
         console.error("Empty result after processing");
         return "";
       }
-      return result.replace(/\n{2,}/g, "\n").replace(/>\s+</g, ">\n<").trim();
+      let cleanedResult = result.replace(/\n{2,}/g, "\n").replace(/>\s+</g, ">\n<").trim();
+      const doctypeIndex = cleanedResult.indexOf("<!DOCTYPE");
+      if (doctypeIndex > 0) {
+        cleanedResult = cleanedResult.substring(doctypeIndex);
+      }
+      return cleanedResult;
     } catch (error) {
       console.error("Error in renderer:", error);
       return "";
