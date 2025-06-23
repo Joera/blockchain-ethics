@@ -187,10 +187,11 @@
         if (!options || typeof options.fn !== "function") {
           return "";
         }
+        const context = options.data && options.data.root || this;
         if (a === b) {
-          return options.fn();
+          return options.fn(context);
         }
-        return typeof options.inverse === "function" ? options.inverse() : "";
+        return typeof options.inverse === "function" ? options.inverse(context) : "";
       }
     },
     {
