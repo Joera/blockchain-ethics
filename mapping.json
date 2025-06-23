@@ -1,24 +1,27 @@
-[
-  {
-    "reference": "homepage",
-    "file": "homepage.handlebars",
-    "path": "/",
-    "collections": [
-      {
-        "source": "orbisdb",
-        "slug": "home",
-        "key": "post_type",
-        "value": "homepage",
-        "query": "SELECT * FROM {{table}} WHERE publication = '{{publication}}' AND {{key}} = '{{value}}' AND language = '{{lang}}'"
-      }
-    ],
-    "ripples": []
-  },
-  {
-    "reference": "page",
-    "file": "page.handlebars",
-    "path": "/{slug}/",
-    "collections": [],
-    "ripples": []
-  }
-]
+{
+  "templateConfig": [
+    {
+      "reference": "homepage",
+      "file": "homepage.handlebars",
+      "path": "/",
+      "collections": [
+        {
+          "source": "orbisdb",
+          "slug": "home",
+          "key": "post_type",
+          "value": "homepage",
+          "query": "SELECT * FROM {{table}} WHERE publication = '{{publication}}' AND {{key}} = '{{value}}' AND language = '{{lang}}'"
+        }
+      ],
+      "ripples": []
+    },
+    {
+      "reference": "page",
+      "file": "page.handlebars",
+      "path": "/{slug}/",
+      "collections": [],
+      "ripples": []
+    }
+  ],
+  "ripples": []
+}
