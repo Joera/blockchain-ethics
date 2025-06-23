@@ -1,6 +1,12 @@
+@use './styleguide/breakpoints' as *;
+
 header.container {
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding-top: 1.5rem;
+
+    @media (min-width: $breakpoint-medium) {
+        align-items: center;
+    }
 }
