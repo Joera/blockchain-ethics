@@ -1084,7 +1084,7 @@
       }
       const templateArray = await response.json();
       const templateFile = templateArray.find(
-        (t) => t.path.includes(templateConfig2.file)
+        (t) => t.path.endsWith(`/${templateConfig2.file}.handlebars`) || t.path.endsWith(`/${templateConfig2.file}`)
       );
       if (!templateFile?.cid) {
         console.error("Template file not found:", templateConfig2.file);
@@ -1112,7 +1112,7 @@
         return "";
       }
       const partialFiles = templateArray.filter(
-        (t) => t.path.includes("partials/")
+        (t) => t.path.includes("partials/") && t.path.endsWith(".handlebars")
       );
       const result = await processPartials(template, partialFiles, templateData2);
       if (!result) {

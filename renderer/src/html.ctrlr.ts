@@ -42,7 +42,7 @@ export const renderHTML = async (
 
     const templateArray = await response.json();
     const templateFile = templateArray.find((t: any) =>
-      t.path.includes(templateConfig.file),
+      t.path.endsWith(`/${templateConfig.file}.handlebars`) || t.path.endsWith(`/${templateConfig.file}`),
     );
 
     if (!templateFile?.cid) {
@@ -87,7 +87,7 @@ export const renderHTML = async (
 
     // Find and process partials
     const partialFiles = templateArray.filter((t: any) =>
-      t.path.includes("partials/"),
+      t.path.includes("partials/") && t.path.endsWith(".handlebars"),
     );
     const result = await processPartials(template, partialFiles, templateData);
 
