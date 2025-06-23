@@ -182,20 +182,11 @@
       }
     },
     {
-      name: "ifEquals",
-      helper: function(a, b, options) {
-        if (!options || typeof options.fn !== "function") {
-          return "";
-        }
-        if (a === b) {
-          return options.fn(this);
-        }
-        return options.inverse ? options.inverse(this) : "";
-      }
-    },
-    {
       name: "ifCond",
       helper: function(v1, operator, v2, options) {
+        if (!options || typeof options !== "object") {
+          return "";
+        }
         let result = false;
         switch (operator) {
           case "==":
@@ -222,11 +213,20 @@
           case ">=":
             result = v1 >= v2;
             break;
-          case "||":
-            result = v1 !== null || v2 !== null;
+          case "&&":
+            result = !!(v1 && v2);
             break;
+          case "||":
+            result = !!(v1 || v2);
+            break;
+          default:
+            result = false;
         }
-        return result ? options && options.fn ? options.fn(this) : "" : options && options.inverse ? options.inverse(this) : "";
+        if (result) {
+          return options.fn ? options.fn(this) : "";
+        } else {
+          return options.inverse ? options.inverse(this) : "";
+        }
       }
     },
     {
