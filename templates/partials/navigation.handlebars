@@ -1,11 +1,11 @@
 <nav id="main">
     <ul>
-        {{ifEquals language 'nl'}}
+        {{ifCond language "===" "nl"}}
             <li><a href="/">Home</a></li>
             <li><a href="/standpunten">Standpunten</a></li>
         {{else}}
             <li><a href="/">Home</a></li>
             <li><a href="/positions">Positions</a></li>
-        {{/ifEquals}}
+        {{/ifCond}}
     </ul>
 </nav>

@@ -118,7 +118,10 @@ export const helpers = [
                 if (!isNaN(date.getTime())) {
                   timestamp = Math.floor(date.getTime() / 1000);
                 }
-              } else if (dateStr.length >= 4 && dateStr.substring(0, 4) === year) {
+              } else if (
+                dateStr.length >= 4 &&
+                dateStr.substring(0, 4) === year
+              ) {
                 matches = true;
               }
             }
@@ -127,7 +130,7 @@ export const helpers = [
             if (matches) {
               filtered.push({
                 ...post,
-                _timestamp: timestamp
+                _timestamp: timestamp,
               });
             }
           } catch (e) {
@@ -137,8 +140,10 @@ export const helpers = [
 
         // Simple sort by creation_date in descending order (newest first)
         filtered.sort((a, b) => {
-          const dateA = a._timestamp || (a.creation_date ? parseInt(a.creation_date) : 0);
-          const dateB = b._timestamp || (b.creation_date ? parseInt(b.creation_date) : 0);
+          const dateA =
+            a._timestamp || (a.creation_date ? parseInt(a.creation_date) : 0);
+          const dateB =
+            b._timestamp || (b.creation_date ? parseInt(b.creation_date) : 0);
           return dateB - dateA; // Descending order
         });
 
@@ -248,45 +253,65 @@ export const helpers = [
       if (!options || typeof options.fn !== "function") {
         return "";
       }
-      
+
       // Use the provided context instead of 'this' which may not be bound correctly
-      const context = options.data && options.data.root || this;
-      
+      const context = (options.data && options.data.root) || this;
+
       if (a === b) {
         return options.fn(context);
       }
-      return typeof options.inverse === "function" ? options.inverse(context) : "";
+      return typeof options.inverse === "function"
+        ? options.inverse(context)
+        : "";
     },
   },
   {
     name: "ifCond",
-    helper: (v1: string, operator: string, v2: string, options: any) => {
+    helper: function (v1: string, operator: string, v2: string, options: any) {
+      // Get the proper context
+      const context = (options.data && options.data.root) || this;
+
+      let result = false;
       switch (operator) {
         case "==":
-          return v1 == v2 ? options.fn(this) : options.inverse(this);
+          result = v1 == v2;
+          break;
         case "===":
-          return v1 === v2 ? options.fn(this) : options.inverse(this);
+          result = v1 === v2;
+          break;
         case "!=":
-          return v1 != v2 ? options.fn(this) : options.inverse(this);
+          result = v1 != v2;
+          break;
         case "!==":
-          return v1 !== v2 ? options.fn(this) : options.inverse(this);
+          result = v1 !== v2;
+          break;
         case "<":
-          return v1 < v2 ? options.fn(this) : options.inverse(this);
+          result = v1 < v2;
+          break;
         case "<=":
-          return v1 <= v2 ? options.fn(this) : options.inverse(this);
+          result = v1 <= v2;
+          break;
         case ">":
-          return v1 > v2 ? options.fn(this) : options.inverse(this);
+          result = v1 > v2;
+          break;
         case ">=":
-          return v1 >= v2 ? options.fn(this) : options.inverse(this);
-        case "&&":
-          return v1 && v2 ? options.fn(this) : options.inverse(this);
+          result = v1 >= v2;
+          break;
+        // case "&&":
+        //   result = v1 && v2;
+        //   break;
         case "||":
-          return v1 !== null || v2 !== null
-            ? options.fn(this)
-            : options.inverse(this);
-        default:
-          return options.inverse(this);
+          result = v1 !== null || v2 !== null;
+          break;
       }
+
+      return result
+        ? typeof options.fn === "function"
+          ? options.fn(context)
+          : ""
+        : typeof options.inverse === "function"
+          ? options.inverse(context)
+          : "";
     },
   },
   {

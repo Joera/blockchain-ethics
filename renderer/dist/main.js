@@ -196,31 +196,42 @@
     },
     {
       name: "ifCond",
-      helper: (v1, operator, v2, options) => {
+      helper: function(v1, operator, v2, options) {
+        const context = options.data && options.data.root || this;
+        let result = false;
         switch (operator) {
           case "==":
-            return v1 == v2 ? options.fn(void 0) : options.inverse(void 0);
+            result = v1 == v2;
+            break;
           case "===":
-            return v1 === v2 ? options.fn(void 0) : options.inverse(void 0);
+            result = v1 === v2;
+            break;
           case "!=":
-            return v1 != v2 ? options.fn(void 0) : options.inverse(void 0);
+            result = v1 != v2;
+            break;
           case "!==":
-            return v1 !== v2 ? options.fn(void 0) : options.inverse(void 0);
+            result = v1 !== v2;
+            break;
           case "<":
-            return v1 < v2 ? options.fn(void 0) : options.inverse(void 0);
+            result = v1 < v2;
+            break;
           case "<=":
-            return v1 <= v2 ? options.fn(void 0) : options.inverse(void 0);
+            result = v1 <= v2;
+            break;
           case ">":
-            return v1 > v2 ? options.fn(void 0) : options.inverse(void 0);
+            result = v1 > v2;
+            break;
           case ">=":
-            return v1 >= v2 ? options.fn(void 0) : options.inverse(void 0);
-          case "&&":
-            return v1 && v2 ? options.fn(void 0) : options.inverse(void 0);
+            result = v1 >= v2;
+            break;
+          // case "&&":
+          //   result = v1 && v2;
+          //   break;
           case "||":
-            return v1 !== null || v2 !== null ? options.fn(void 0) : options.inverse(void 0);
-          default:
-            return options.inverse(void 0);
+            result = v1 !== null || v2 !== null;
+            break;
         }
+        return result ? typeof options.fn === "function" ? options.fn(context) : "" : typeof options.inverse === "function" ? options.inverse(context) : "";
       }
     },
     {
