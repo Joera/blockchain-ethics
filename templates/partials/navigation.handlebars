@@ -1,7 +1,11 @@
-<nav>
+<nav id="main">
     <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">Standpunten</a></li>
+        {{ifEquals language 'nl'}}
+            <li><a href="/">Home</a></li>
+            <li><a href="/standpunten">Standpunten</a></li>
+        {{else}}
+            <li><a href="/">Home</a></li>
+            <li><a href="/positions">Positions</a></li>
+        {{/ifEquals}}
     </ul>
 </nav>
-``
