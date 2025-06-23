@@ -228,12 +228,12 @@ main {
   font-size: 3.2rem;
   font-style: normal;
   line-height: 1.22;
-  text-align: center;
   margin: 0;
 }
 @media (min-width: 768px) {
   #page_title_container h1 {
     font-size: 4rem;
+    text-align: center;
   }
 }
 #page_title_container h2 {
