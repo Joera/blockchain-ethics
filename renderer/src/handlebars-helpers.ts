@@ -248,21 +248,13 @@ export const helpers = [
     },
   },
   {
-    name: "ifEquals",
-    helper: function (a: string, b: string, options: any) {
-      if (!options || typeof options.fn !== "function") {
-        return "";
+    name: "ifCond",
+    helper: function (v1, operator, v2, options) {
+      // Make sure we have valid options
+      if (!options || typeof options !== 'object') {
+        return '';
       }
 
-      if (a === b) {
-        return options.fn(this);
-      }
-      return options.inverse ? options.inverse(this) : "";
-    },
-  },
-  {
-    name: "ifCond",
-    helper: function (v1: string, operator: string, v2: string, options: any) {
       let result = false;
       switch (operator) {
         case "==":
@@ -289,14 +281,21 @@ export const helpers = [
         case ">=":
           result = v1 >= v2;
           break;
-        case "||":
-          result = v1 !== null || v2 !== null;
+        case "&&":
+          result = !!(v1 && v2);
           break;
+        case "||":
+          result = !!(v1 || v2);
+          break;
+        default:
+          result = false;
       }
 
-      return result
-        ? (options && options.fn ? options.fn(this) : "")
-        : (options && options.inverse ? options.inverse(this) : "");
+      if (result) {
+        return options.fn ? options.fn(this) : '';
+      } else {
+        return options.inverse ? options.inverse(this) : '';
+      }
     },
   },
   {
