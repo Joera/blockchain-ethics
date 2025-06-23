@@ -17,6 +17,7 @@ h1 {
   font-family: "Hoefler Titling A", "Hoefler Titling B";
   font-style: italic;
   font-weight: 700;
+  max-width: 600px;
 }
 
 h2 {
@@ -30,6 +31,7 @@ h3 {
   font-style: normal;
   font-weight: 700;
   font-size: 1.5rem;
+  font-style: italic;
   margin: 2.5rem 0 0.25rem 0;
 }
 
@@ -180,6 +182,9 @@ main {
   line-height: 1.28;
   text-align: center;
   margin: 0;
+}
+#home_head h2 {
+  font-size: 2.1rem;
 }
 
 /*# sourceMappingURL=styles.css.map */
