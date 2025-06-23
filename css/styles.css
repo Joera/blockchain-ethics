@@ -4,6 +4,12 @@
   --greybackground:rgba(184, 184, 185, 1);
 }
 
+h1 {
+  font-family: "Hoefler Titling A", "Hoefler Titling B";
+  font-style: italic;
+  font-weight: 700;
+}
+
 a {
   color: var(--black);
   text-decoration: none;
@@ -57,6 +63,10 @@ body {
 
 main {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .container {

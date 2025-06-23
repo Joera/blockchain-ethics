@@ -1109,9 +1109,10 @@
         return "";
       }
       let cleanedResult = result.replace(/\n{2,}/g, "\n").replace(/>\s+</g, ">\n<").trim();
-      const doctypeIndex = cleanedResult.indexOf("<!DOCTYPE");
-      if (doctypeIndex > 0) {
-        cleanedResult = cleanedResult.substring(doctypeIndex);
+      const doctypePattern = /<!DOCTYPE/i;
+      const doctypeMatch = doctypePattern.exec(cleanedResult);
+      if (doctypeMatch && doctypeMatch.index > 0) {
+        cleanedResult = cleanedResult.substring(doctypeMatch.index);
       }
       return cleanedResult;
     } catch (error) {

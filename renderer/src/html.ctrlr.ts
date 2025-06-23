@@ -95,10 +95,13 @@ export const renderHTML = async (
       .replace(/>\s+</g, ">\n<")
       .trim();
     
-    // Remove any characters before <!DOCTYPE
-    const doctypeIndex = cleanedResult.indexOf("<!DOCTYPE");
-    if (doctypeIndex > 0) {
-      cleanedResult = cleanedResult.substring(doctypeIndex);
+    // Remove any characters before <!DOCTYPE - this includes asterisks and other unexpected characters
+    const doctypePattern = /<!DOCTYPE/i;
+    const doctypeMatch = doctypePattern.exec(cleanedResult);
+    
+    if (doctypeMatch && doctypeMatch.index > 0) {
+      // Remove everything before the DOCTYPE declaration
+      cleanedResult = cleanedResult.substring(doctypeMatch.index);
     }
     
     return cleanedResult;
