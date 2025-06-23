@@ -1,4 +1,5 @@
 @use 'colours';
+@use 'breakpoints';
 
 @mixin bodyText {
 
@@ -34,6 +35,7 @@ h2 {
     font-family: "Gotham A", "Gotham B";
     font-style: normal;
     font-weight: 800;
+
 
 }
 
@@ -74,5 +76,8 @@ em {
     line-height: 1.4;
     margin: 2rem 0;
     display: block;
-    margin-left: -6rem;
+
+    @media (min-width: breakpoints.$breakpoint-medium) {
+        margin-left: -6rem;
+    }
 }

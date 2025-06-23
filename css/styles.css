@@ -61,7 +61,11 @@ em {
   line-height: 1.4;
   margin: 2rem 0;
   display: block;
-  margin-left: -6rem;
+}
+@media (min-width: 768px) {
+  em {
+    margin-left: -6rem;
+  }
 }
 
 html {
@@ -198,6 +202,8 @@ main {
 }
 #home_head h2 {
   font-size: 1.5rem;
+  line-height: 1.33;
+  text-align: center;
   text-transform: lowercase;
 }
 @media (min-width: 768px) {
@@ -214,15 +220,28 @@ main {
   margin-bottom: 4rem;
 }
 #page_title_container h1 {
-  font-size: 4rem;
+  font-size: 3.2rem;
   line-height: 1.22;
+  text-align: center;
+  margin: 0;
   margin: 0;
   font-style: normal;
 }
+@media (min-width: 768px) {
+  #page_title_container h1 {
+    font-size: 4rem;
+  }
+}
 #page_title_container h2 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
+  line-height: 1.33;
   text-transform: lowercase;
   margin-top: 0.125rem;
+}
+@media (min-width: 768px) {
+  #page_title_container h2 {
+    font-size: 1.8rem;
+  }
 }
 
 nav ul {
@@ -243,7 +262,7 @@ nav ul {
   }
 }
 nav ul > li {
-  margin: 0rem 0.5rem;
+  margin: 0.25rem 0.5rem;
 }
 @media screen and (min-width: 768px) {
   nav ul > li:first-child {
