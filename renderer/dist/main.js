@@ -187,17 +187,15 @@
         if (!options || typeof options.fn !== "function") {
           return "";
         }
-        const context = options.data && options.data.root || this;
         if (a === b) {
-          return options.fn(context);
+          return options.fn(this);
         }
-        return typeof options.inverse === "function" ? options.inverse(context) : "";
+        return options.inverse ? options.inverse(this) : "";
       }
     },
     {
       name: "ifCond",
       helper: function(v1, operator, v2, options) {
-        const context = options.data && options.data.root || this;
         let result = false;
         switch (operator) {
           case "==":
@@ -224,23 +222,20 @@
           case ">=":
             result = v1 >= v2;
             break;
-          // case "&&":
-          //   result = v1 && v2;
-          //   break;
           case "||":
             result = v1 !== null || v2 !== null;
             break;
         }
-        return result ? typeof options.fn === "function" ? options.fn(context) : "" : typeof options.inverse === "function" ? options.inverse(context) : "";
+        return result ? options && options.fn ? options.fn(this) : "" : options && options.inverse ? options.inverse(this) : "";
       }
     },
     {
       name: "isUndefined",
-      helper: (value, options) => {
+      helper: function(value, options) {
         if (typeof value === "undefined") {
-          options.inverse(void 0);
+          return options.inverse ? options.inverse(this) : "";
         } else {
-          options.fn(void 0);
+          return options.fn ? options.fn(this) : "";
         }
       }
     },
@@ -252,20 +247,20 @@
     },
     {
       name: "ifIn",
-      helper: (elem, list, options) => {
+      helper: function(elem, list, options) {
         if (list.indexOf(elem) > -1) {
-          return options.fn(void 0);
+          return options.fn ? options.fn(this) : "";
         }
-        return options.inverse(void 0);
+        return options.inverse ? options.inverse(this) : "";
       }
     },
     {
       name: "unlessIn",
-      helper: (elem, list, options) => {
+      helper: function(elem, list, options) {
         if (list.indexOf(elem) > -1) {
-          return options.inverse(void 0);
+          return options.inverse ? options.inverse(this) : "";
         }
-        return options.fn(void 0);
+        return options.fn ? options.fn(this) : "";
       }
     },
     {
@@ -280,11 +275,11 @@
     },
     {
       name: "ifMoreThan",
-      helper: (a, b, options) => {
+      helper: function(a, b, options) {
         if (parseInt(a) > b) {
-          return options.fn(void 0);
+          return options.fn ? options.fn(this) : "";
         } else {
-          return options.inverse(void 0);
+          return options.inverse ? options.inverse(this) : "";
         }
       }
     },

@@ -254,23 +254,15 @@ export const helpers = [
         return "";
       }
 
-      // Use the provided context instead of 'this' which may not be bound correctly
-      const context = (options.data && options.data.root) || this;
-
       if (a === b) {
-        return options.fn(context);
+        return options.fn(this);
       }
-      return typeof options.inverse === "function"
-        ? options.inverse(context)
-        : "";
+      return options.inverse ? options.inverse(this) : "";
     },
   },
   {
     name: "ifCond",
     helper: function (v1: string, operator: string, v2: string, options: any) {
-      // Get the proper context
-      const context = (options.data && options.data.root) || this;
-
       let result = false;
       switch (operator) {
         case "==":
@@ -297,30 +289,23 @@ export const helpers = [
         case ">=":
           result = v1 >= v2;
           break;
-        // case "&&":
-        //   result = v1 && v2;
-        //   break;
         case "||":
           result = v1 !== null || v2 !== null;
           break;
       }
 
       return result
-        ? typeof options.fn === "function"
-          ? options.fn(context)
-          : ""
-        : typeof options.inverse === "function"
-          ? options.inverse(context)
-          : "";
+        ? (options && options.fn ? options.fn(this) : "")
+        : (options && options.inverse ? options.inverse(this) : "");
     },
   },
   {
     name: "isUndefined",
-    helper: (value: string, options: any) => {
+    helper: function(value: string, options: any) {
       if (typeof value === "undefined") {
-        options.inverse(this);
+        return options.inverse ? options.inverse(this) : "";
       } else {
-        options.fn(this);
+        return options.fn ? options.fn(this) : "";
       }
     },
   },
@@ -332,20 +317,20 @@ export const helpers = [
   },
   {
     name: "ifIn",
-    helper: (elem: string, list: string[], options: any) => {
+    helper: function(elem: string, list: string[], options: any) {
       if (list.indexOf(elem) > -1) {
-        return options.fn(this);
+        return options.fn ? options.fn(this) : "";
       }
-      return options.inverse(this);
+      return options.inverse ? options.inverse(this) : "";
     },
   },
   {
     name: "unlessIn",
-    helper: (elem: string, list: string[], options: any) => {
+    helper: function(elem: string, list: string[], options: any) {
       if (list.indexOf(elem) > -1) {
-        return options.inverse(this);
+        return options.inverse ? options.inverse(this) : "";
       }
-      return options.fn(this);
+      return options.fn ? options.fn(this) : "";
     },
   },
   {
@@ -360,11 +345,11 @@ export const helpers = [
   },
   {
     name: "ifMoreThan",
-    helper: (a: string, b: number, options: any) => {
+    helper: function(a: string, b: number, options: any) {
       if (parseInt(a) > b) {
-        return options.fn(this);
+        return options.fn ? options.fn(this) : "";
       } else {
-        return options.inverse(this);
+        return options.inverse ? options.inverse(this) : "";
       }
     },
   },
