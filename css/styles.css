@@ -201,16 +201,18 @@ main {
   flex-direction: column;
   align-items: flex-start;
   margin-top: 3rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 4rem;
 }
 #page_title_container h1 {
   font-size: 4rem;
   line-height: 1.22;
   margin: 0;
+  font-style: normal;
 }
 #page_title_container h2 {
   font-size: 1.8rem;
   text-transform: lowercase;
+  margin-top: 0.125rem;
 }
 
 nav ul {
