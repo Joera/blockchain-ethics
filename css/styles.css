@@ -1,5 +1,5 @@
 :root {
-  --black: #444;
+  --black: #000;
   --grey: #444;
   --greybackground:rgba(184, 184, 185, 1);
 }
@@ -187,12 +187,12 @@ main {
 }
 #home_head h1 {
   font-size: 5.2rem;
-  line-height: 1.28;
+  line-height: 1.22;
   text-align: center;
   margin: 0;
 }
 #home_head h2 {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 nav.container.small_container {
