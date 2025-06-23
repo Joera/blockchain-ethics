@@ -139,4 +139,13 @@ main {
   }
 }
 
+#home_head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#home_head h1 {
+  font-size: 4rem;
+}
+
 /*# sourceMappingURL=styles.css.map */
