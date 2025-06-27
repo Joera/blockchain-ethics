@@ -1,0 +1,43 @@
+@use './styleguide/breakpoints';
+
+#page_title_container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+
+    @media (min-width: breakpoints.$breakpoint-medium) {
+            margin-bottom: 4rem;
+        }
+
+    h1 {
+
+        font-size: 3.2rem;
+        font-style: normal;
+        line-height: 1.05;
+        margin: 0 0 .75rem 0;
+
+        @media (min-width: breakpoints.$breakpoint-medium) {
+            font-size: 4rem;
+            line-height: 1.22;
+            text-align: center;
+            margin: 0;
+        }
+
+
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        line-height: 1.33;
+        text-transform: lowercase;
+        margin-top: .125rem;
+
+        @media (min-width: breakpoints.$breakpoint-medium) {
+            font-size: 1.8rem;
+        }
+
+    }
+
+}
